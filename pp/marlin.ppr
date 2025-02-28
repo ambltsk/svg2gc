@@ -1,0 +1,45 @@
+; Marlin post processor rule
+
+[start gcode] {*
+G90     ;Absolute programming
+G21     ;Programming in millimeters (mm)
+G00 Z0  ; Z to zero position
+M10     ; Turn on air assistent
+M03 S1  ;Activate laser and set power to 0 (CUSTOM)
+*}
+
+[end gcode] {*
+M11     ; Turn off air assistent
+M05 S0  ; Deactivate laser and set power to 0 (CUSTOM)
+G00 Z20 ; Up Z to safe distance
+G00 X0 Y0 F200 ; Go laser home
+M02     ; End of program
+*}
+
+[comment] {*
+text:; {text}
+*}
+
+[move] {*
+command: G00
+X:_X{x}
+Y:_Y{y}
+speed:_F{speed}
+*}
+
+[line] {*
+command: G01
+X:_X{x}
+Y:_Y{y}
+speed:_F{speed}
+*}
+
+[on] {*
+command: M03
+power:_S{power}
+*}
+
+[off] {*
+command: M03
+power:_S{power}
+*}
