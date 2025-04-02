@@ -154,6 +154,7 @@ def processing_path(paths, parametr, lastx, lasty, lasts):
                                 'X': r(float(xs), 'X') if xs != xe else None,
                                 'Y': r(float(ys), 'Y') if ys != ye else None,
                                 'speed': 'travel' if lasts != 'travel' else None})
+                lasts = 'travel'
                 process.append({'action': 'on', 'power': parametr})
             else:
                 xs, ys = xe, ye
